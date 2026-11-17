@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wildrock Direction C</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bone:#EEE9E0; --paper:#F6F3EE; --ink:#1C1B19; --clay:#A65A3A; --sage:#7E8B74; --sand:#CDBFA8;
+  --muted:#6B665E; --line:#DDD6CA;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:"Instrument Sans",system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+svg{display:block}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:clamp(16px,4vw,48px)}
+section{padding-block:clamp(56px,8vw,112px);border-top:1px solid var(--line)}
+.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:500}
+h1{font-size:clamp(30px,4.4vw,52px);font-weight:500;letter-spacing:-.01em;line-height:1.1;margin:14px 0 22px}
+h2{font-size:clamp(20px,2.2vw,26px);font-weight:500;letter-spacing:-.005em;margin:10px 0 28px}
+p.lede{max-width:640px;font-size:clamp(16px,1.6vw,19px);color:#3B3833}
+.traits{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,3vw,40px);margin-top:44px}
+.traits h3{font-size:14px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px}
+.traits p{color:#4A463F;font-size:15px}
+.traits div{border-top:2px solid var(--ink);padding-top:14px}
+header.top{padding-block:clamp(48px,7vw,96px) clamp(56px,7vw,96px)}
+.panel{background:var(--bone);border-radius:2px;display:flex;align-items:center;justify-content:center}
+.hero{padding:clamp(48px,10vw,140px) clamp(20px,7vw,96px)}
+.hero .wm{width:100%;max-width:880px;color:var(--ink)}
+.note{font-size:13px;color:var(--muted);margin-top:14px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,2vw,24px)}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,2vw,24px)}
+.sizes{display:grid;grid-template-columns:1.3fr 1fr;gap:clamp(12px,2vw,24px)}
+.sizes .big{padding:clamp(40px,7vw,80px)}
+.m-lg{width:min(220px,50vw);color:var(--ink)}
+.scale{display:flex;align-items:flex-end;gap:clamp(24px,4vw,48px);padding:40px 24px;justify-content:center}
+.scale figure{display:flex;flex-direction:column;align-items:center;gap:12px}
+.scale figcaption{font-size:12px;color:var(--muted);letter-spacing:.06em}
+.m64{width:64px;height:64px;color:var(--ink)} .m32{width:32px;height:32px;color:var(--ink)} .m16{width:16px;height:16px;color:var(--ink)}
+.dark .m64,.dark .m32,.dark .m16{color:var(--bone)}
+.stackcol{display:grid;grid-template-rows:1fr 1fr;gap:clamp(12px,2vw,24px)}
+.lockups .panel{padding:clamp(36px,6vw,72px) clamp(20px,4vw,56px);min-height:220px}
+.lh{width:100%;max-width:440px} .ls{width:100%;max-width:260px}
+.light{background:var(--bone);color:var(--ink)} .light svg{color:var(--ink)}
+.dark{background:var(--ink);color:var(--bone)} .dark svg{color:var(--bone)}
+.claybg{background:var(--clay)} .claybg svg{color:var(--bone)}
+.sagebg{background:var(--sage)} .sagebg svg{color:var(--ink)}
+.palette{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.sw{border-radius:2px;overflow:hidden;border:1px solid var(--line);background:#fff}
+.sw .chip{height:140px}
+.sw .meta{padding:14px 14px 16px;font-size:13px}
+.sw b{display:block;font-weight:600;font-size:14px}
+.sw code{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--muted)}
+.sw span{display:block;color:#4A463F;margin-top:6px;line-height:1.45}
+.ratio{display:flex;height:18px;margin-top:18px;border-radius:2px;overflow:hidden}
+.ratio i{display:block}
+.type{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,56px);align-items:start}
+.spec-wm{width:100%;max-width:420px;color:var(--ink)}
+.spec-m{width:56px;color:var(--ink)}
+.specimen .aa{font-size:clamp(64px,9vw,112px);line-height:1;font-weight:500;letter-spacing:-.02em}
+.specimen .row{border-top:1px solid var(--line);padding:16px 0;display:grid;grid-template-columns:110px 1fr;gap:16px;align-items:baseline}
+.specimen .row small{font-size:12px;color:var(--muted);letter-spacing:.06em}
+.s-display{font-size:clamp(26px,3vw,36px);font-weight:500;line-height:1.15;letter-spacing:-.01em}
+.s-body{font-size:16px;color:#3B3833;max-width:52ch}
+.s-label{font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase}
+.anatomy{background:var(--bone);padding:clamp(24px,4vw,40px);border-radius:2px}
+.anatomy ul{list-style:none;margin-top:22px;font-size:14px;color:#3B3833}
+.anatomy li{padding:10px 0;border-top:1px solid var(--line)}
+.anatomy li b{font-weight:600}
+.scene{width:100%;height:auto;border-radius:2px}
+.mock-cap{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:14px 0 0}
+.mocks{display:grid;gap:clamp(16px,3vw,32px)}
+.mocks .row2{display:grid;grid-template-columns:1.6fr 1fr;gap:clamp(16px,3vw,32px)}
+.mocks .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:clamp(16px,3vw,32px)}
+/* website header */
+.site{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--paper)}
+.site .bar{height:30px;background:#E4DED4;display:flex;align-items:center;gap:6px;padding:0 12px}
+.site .bar i{width:9px;height:9px;border-radius:50%;background:#C9C1B3}
+.site nav{display:flex;align-items:center;justify-content:space-between;padding:20px clamp(16px,3vw,32px);border-bottom:1px solid var(--line)}
+.hdr-wm{width:clamp(120px,16vw,176px);color:var(--ink)}
+.site nav ul{display:flex;gap:clamp(12px,2.4vw,28px);list-style:none;font-size:13px;color:#3B3833}
+.site nav .cta{border:1.5px solid var(--ink);padding:7px 14px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+.site .heroimg{position:relative;height:clamp(180px,24vw,260px);background:linear-gradient(#E9E3D8,#E9E3D8 52%,var(--sand) 52%,var(--sand) 66%,var(--sage) 66%)}
+.site .heroimg h4{position:absolute;left:clamp(16px,3vw,32px);bottom:clamp(18px,3vw,32px);font-size:clamp(22px,3vw,36px);font-weight:500;letter-spacing:-.01em;color:var(--paper);max-width:14ch;line-height:1.1}
+.site .heroimg .sun{position:absolute;right:16%;top:22%;width:clamp(40px,6vw,64px);aspect-ratio:1;border-radius:50%;background:var(--clay)}
+/* avatar */
+.avatar-card{border:1px solid var(--line);border-radius:6px;background:#fff;padding:24px;display:flex;flex-direction:column;align-items:center;gap:14px;justify-content:center}
+.av-wrap{width:120px;height:120px;border-radius:50%;background:var(--bone);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.av{width:120px;height:120px;color:var(--ink)}
+.avatar-card .name{font-weight:600;font-size:15px}
+.avatar-card .handle{font-size:13px;color:var(--muted);margin-top:-10px}
+.avatar-card .stats{display:flex;gap:18px;font-size:12px;color:#3B3833}
+.av-row{display:flex;gap:10px;align-items:center}
+.av-sm{width:40px;height:40px;border-radius:50%;background:var(--bone);overflow:hidden}
+.av-sm svg{width:40px;height:40px;color:var(--ink)}
+.av-sm.c{background:var(--ink)}
+.av-sm.c svg{color:var(--bone)}
+/* browser tab */
+.tabs{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#DCD5C9}
+.tabstrip{display:flex;align-items:flex-end;gap:2px;padding:10px 10px 0}
+.tab{display:flex;align-items:center;gap:8px;padding:9px 14px;font-size:12.5px;border-radius:8px 8px 0 0;color:#3B3833;min-width:0}
+.tab.on{background:var(--paper);color:var(--ink)}
+.tab .fav{width:16px;height:16px;color:var(--ink);flex:none}
+.tab .g{width:16px;height:16px;border-radius:50%;background:#B9B0A1;flex:none}
+.tab span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.urlbar{background:var(--paper);padding:10px 12px}
+.urlbar div{background:#E8E2D8;border-radius:14px;font-size:12px;padding:6px 14px;color:#5A554D}
+.tabs .page{background:var(--paper);height:78px}
+.dark-tabs{margin-top:14px;background:#2A2926;border-color:#2A2926}
+.dark-tabs .tab.on{background:#3A3834;color:#EEE9E0}
+.dark-tabs .tab.on .fav{color:#EEE9E0}
+.dark-tabs .tab{color:#A9A398}
+footer{padding-block:48px 80px;color:var(--muted);font-size:13px;border-top:1px solid var(--line)}
+@media (max-width:860px){
+  .traits,.grid2,.sizes,.type,.mocks .row2,.mocks .row3{grid-template-columns:1fr}
+  .palette{grid-template-columns:repeat(2,1fr)}
+  .palette .sw:first-child{grid-column:1/-1}
+  .site nav ul{display:none}
+}
+</style>
+</head>
+<body>
+
+<header class="top wrap">
+  <div class="eyebrow">Wildrock · Brand identity · Direction C of 3</div>
+  <h1>Horizon Wordmark</h1>
+  <p class="lede">A custom geometric wordmark, wide and evenly weighted like a modern architecture studio's. It has one ownable detail: the O in ROCK is a solid disc, part stone and part sun, cut by a single horizon line. The same horizon sets the height of the R's bowl and the K's junction, so the whole word rests on one line. The companion mark turns the detail inside out: the disc is cut out of a square, like a landscape framed by a window.</p>
+  <div class="traits">
+    <div><h3>Human</h3><p>Open counters, generous spacing and a calm rhythm. The disc reads as a sun over a place someone has chosen to live, a personal view rather than a corporate symbol.</p></div>
+    <div><h3>Wild</h3><p>The landscape lives in the detail: one horizon line through a sun or stone. It points to ridgelines and high desert without drawing them, and without any rustic clichés.</p></div>
+    <div><h3>Precise</h3><p>Built on a 100-unit cap height with 18-unit strokes. The horizon sits at 60 units across the O, the R and the K. In the lockup the mark's disc matches the O exactly, so the two horizons line up.</p></div>
+  </div>
+</header>
+
+<section class="wrap">
+  <div class="eyebrow">01 · Wordmark</div>
+  <h2>WILDROCK, drawn as custom letterforms</h2>
+  <div class="panel hero"><svg class="wm" aria-label="Wildrock" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 884.79 100" role="img">
+
+<g fill="currentColor" fill-rule="evenodd"><path transform="translate(0 0)" d="M0 0 L18.79 0 L48.79 100 L30 100 Z"/><path transform="translate(0 0)" d="M30 100 L48.79 100 L78.79 0 L60 0 Z"/><path transform="translate(0 0)" d="M90 100 L108.79 100 L78.79 0 L60 0 Z"/><path transform="translate(0 0)" d="M120 0 L138.79 0 L108.79 100 L90 100 Z"/><path transform="translate(168.79 0)" d="M0 0 L18 0 L18 100 L0 100 Z"/><path transform="translate(226.79 0)" d="M0 0 L18 0 L18 82 L64 82 L64 100 L0 100 Z"/><path transform="translate(320.79 0)" d="M0 0 H40 A50 50 0 0 1 40 100 H0 Z M18 18 H40 A32 32 0 0 1 40 82 H18 Z"/><path transform="translate(448.79 0)" d="M0 0 L18 0 L18 100 L0 100 Z"/><path transform="translate(448.79 0)" d="M0 0 H44 A30 30 0 0 1 44 60 H0 Z M18 18 H44 A12 12 0 0 1 44 42 H18 Z"/><path transform="translate(448.79 0)" d="M34 42 L53.76 42 L80 100 L60.24 100 Z"/><path transform="translate(558.79 0)" d="M1.01 60 A50 50 0 1 1 98.99 60 Z"/><path transform="translate(558.79 0)" d="M4.17 70 A50 50 0 0 0 95.83 70 Z"/><path transform="translate(690.79 0)" d="M78 8.58 A50 50 0 1 0 78 91.42 L78 65.49 A32 32 0 1 1 78 34.51 Z"/><path transform="translate(806.79 0)" d="M0 0 L18 0 L18 100 L0 100 Z"/><path transform="translate(806.79 0)" d="M54.87 0 L78 0 L12 81.76 L12 53.1 Z"/><path transform="translate(806.79 0)" d="M31.7 43.03 L44.3 27.42 L78 100 L58.15 100 Z"/></g>
+</svg></div>
+  <p class="note">Every letter is a hand-built SVG path: rectangles, polygons and arcs only, with no font. The O is the only filled form in the word, so it becomes the stone.</p>
+</section>
+
+<section class="wrap">
+  <div class="eyebrow">02 · Companion mark</div>
+  <h2>The disc on the horizon, framed</h2>
+  <div class="sizes">
+    <div class="panel big"><svg class="m-lg" aria-label="Wildrock mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img">
+
+<g fill="currentColor" fill-rule="evenodd"><path d="M0 0 H100 V100 H0 Z M18.65 56.4 A32 32 0 1 1 81.35 56.4 Z M20.67 62.8 A32 32 0 0 0 79.33 62.8 Z"/></g>
+</svg></div>
+    <div class="stackcol">
+      <div class="panel light scale">
+        <figure><svg class="m64" aria-label="Wildrock mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img">
+
+<g fill="currentColor" fill-rule="evenodd"><path d="M0 0 H100 V100 H0 Z M18.65 56.4 A32 32 0 1 1 81.35 56.4 Z M20.67 62.8 A32 32 0 0 0 79.33 62.8 Z"/></g>
+</svg><figcaption>64 px</figcaption></figure>
+        <figure><svg class="m32" aria-label="Wildrock mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img">
+
+<g fill="currentColor" fill-rule="evenodd"><path d="M0 0 H100 V100 H0 Z M18.65 56.4 A32 32 0 1 1 81.35 56.4 Z M20.67 62.8 A32 32 0 0 0 79.33 62.8 Z"/></g>
+</svg><figcaption>32 px</figcaption></figure>
+        <figure><svg class="m16" aria-label="Wildrock favicon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" role="img">
+
+<g fill="currentColor" fill-rule="evenodd"><path d="M0 0 H16 V16 H0 Z M2.29 8.73 A5.76 5.76 0 1 1 13.71 8.73 Z M2.93 10.73 A5.76 5.76 0 0 0 13.07 10.73 Z"/></g>
+</svg><figcaption>16 px</figcaption></figure>
+      </div>
+      <div class="panel dark scale">
+        <figure><svg class="m64" aria-label="Wildrock mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img">
+
+<g fill="currentColor" fill-rule="evenodd"><path d="M0 0 H100 V100 H0 Z M18.65 56.4 A32 32 0 1 1 81.35 56.4 Z M20.67 62.8 A32 32 0 0 0 79.33 62.8 Z"/></g>
+</svg><figcaption style="color:#A9A398">64 px</figcaption></figure>
+        <figure><svg class="m32" aria-label="Wildrock mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img">
+
+<g fill="currentColor" fill-rule="evenodd"><path d="M0 0 H100 V100 H0 Z M18.65 56.4 A32 32 0 1 1 81.35 56.4 Z M20.67 62.8 A32 32 0 0 0 79.33 62.8 Z"/></g>
+</svg><figcaption style="color:#A9A398">32 px</figcaption></figure>
+        <figure><svg class="m16" aria-label="Wildrock favicon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" role="img">
+
+<g fill="currentColor" fill-rule="evenodd"><path d="M0 0 H16 V16 H0 Z M2.29 8.73 A5.76 5.76 0 1 1 13.71 8.73 Z M2.93 10.73 A5.76 5.76 0 0 0 13.07 10.73 Z"/></g>
+</svg><figcaption style="color:#A9A398">16 px</figcaption></figure>
+      </div>
+    </div>
+  </div>
+  <p class="note">The mark inverts the O: in the wordmark the disc is solid and the horizon is cut out of it, while in the mark the disc is cut out and the horizon stays solid. The 16 px favicon is a separate, tuned drawing with a larger disc and a 2 px horizon.</p>
+</section>
+
+<section class="wrap lockups">
+  <div class="eyebrow">03 · Lockups</div>
+  <h2>Mark-word pair, on light and on dark</h2>
+  <div class="grid2">
+    <div class="panel light"><svg class="lh" aria-label="Wildrock" xmlns="http://www.w3.org/2000/svg" viewBox="0 -28.12 1097.04 156.25" role="img"><g fill="currentColor" fill-rule="evenodd"><path d="M0 -28.12 H156.25 V128.12 H0 Z M29.14 60 A50 50 0 1 1 127.11 60 Z M32.3 70 A50 50 0 0 0 123.95 70 Z"/><path transform="translate(212.25 0)" d="M0 0 L18.79 0 L48.79 100 L30 100 Z"/><path transform="translate(212.25 0)" d="M30 100 L48.79 100 L78.79 0 L60 0 Z"/><path transform="translate(212.25 0)" d="M90 100 L108.79 100 L78.79 0 L60 0 Z"/><path transform="translate(212.25 0)" d="M120 0 L138.79 0 L108.79 100 L90 100 Z"/><path transform="translate(381.04 0)" d="M0 0 L18 0 L18 100 L0 100 Z"/><path transform="translate(439.04 0)" d="M0 0 L18 0 L18 82 L64 82 L64 100 L0 100 Z"/><path transform="translate(533.04 0)" d="M0 0 H40 A50 50 0 0 1 40 100 H0 Z M18 18 H40 A32 32 0 0 1 40 82 H18 Z"/><path transform="translate(661.04 0)" d="M0 0 L18 0 L18 100 L0 100 Z"/><path transform="translate(661.04 0)" d="M0 0 H44 A30 30 0 0 1 44 60 H0 Z M18 18 H44 A12 12 0 0 1 44 42 H18 Z"/><path transform="translate(661.04 0)" d="M34 42 L53.76 42 L80 100 L60.24 100 Z"/><path transform="translate(771.04 0)" d="M1.01 60 A50 50 0 1 1 98.99 60 Z"/><path transform="translate(771.04 0)" d="M4.17 70 A50 50 0 0 0 95.83 70 Z"/><path transform="translate(903.04 0)" d="M78 8.58 A50 50 0 1 0 78 91.42 L78 65.49 A32 32 0 1 1 78 34.51 Z"/><path transform="translate(1019.04 0)" d="M0 0 L18 0 L18 100 L0 100 Z"/><path transform="translate(1019.04 0)" d="M54.87 0 L78 0 L12 81.76 L12 53.1 Z"/><path transform="translate(1019.04 0)" d="M31.7 43.03 L44.3 27.42 L78 100 L58.15 100 Z"/></g></svg></div>
+    <div class="panel dark"><svg class="lh" aria-label="Wildrock" xmlns="http://www.w3.org/2000/svg" viewBox="0 -28.12 1097.04 156.25" role="img"><g fill="currentColor" fill-rule="evenodd"><path d="M0 -28.12 H156.25 V128.12 H0 Z M29.14 60 A50 50 0 1 1 127.11 60 Z M32.3 70 A50 50 0 0 0 123.95 70 Z"/><path transform="translate(212.25 0)" d="M0 0 L18.79 0 L48.79 100 L30 100 Z"/><path transform="translate(212.25 0)" d="M30 100 L48.79 100 L78.79 0 L60 0 Z"/><path transform="translate(212.25 0)" d="M90 100 L108.79 100 L78.79 0 L60 0 Z"/><path transform="translate(212.25 0)" d="M120 0 L138.79 0 L108.79 100 L90 100 Z"/><path transform="translate(381.04 0)" d="M0 0 L18 0 L18 100 L0 100 Z"/><path transform="translate(439.04 0)" d="M0 0 L18 0 L18 82 L64 82 L64 100 L0 100 Z"/><path transform="translate(533.04 0)" d="M0 0 H40 A50 50 0 0 1 40 100 H0 Z M18 18 H40 A32 32 0 0 1 40 82 H18 Z"/><path transform="translate(661.04 0)" d="M0 0 L18 0 L18 100 L0 100 Z"/><path transform="translate(661.04 0)" d="M0 0 H44 A30 30 0 0 1 44 60 H0 Z M18 18 H44 A12 12 0 0 1 44 42 H18 Z"/><path transform="translate(661.04 0)" d="M34 42 L53.76 42 L80 100 L60.24 100 Z"/><path transform="translate(771.04 0)" d="M1.01 60 A50 50 0 1 1 98.99 60 Z"/><path transform="translate(771.04 0)" d="M4.17 70 A50 50 0 0 0 95.83 70 Z"/><path transform="translate(903.04 0)" d="M78 8.58 A50 50 0 1 0 78 91.42 L78 65.49 A32 32 0 1 1 78 34.51 Z"/><path transform="translate(1019.04 0)" d="M0 0 L18 0 L18 100 L0 100 Z"/><path transform="translate(1019.04 0)" d="M54.87 0 L78 0 L12 81.76 L12 53.1 Z"/><path transform="translate(1019.04 0)" d="M31.7 43.03 L44.3 27.42 L78 100 L58.15 100 Z"/></g></svg></div>
+    <div class="panel light"><svg class="ls" aria-label="Wildrock" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 884.79 412" role="img">
+
+<g fill="currentColor" fill-rule="evenodd"><path d="M322.4 0 H562.4 V240 H322.4 Z M367.15 135.36 A76.8 76.8 0 1 1 517.64 135.36 Z M372.01 150.72 A76.8 76.8 0 0 0 512.78 150.72 Z"/><path transform="translate(0 312)" d="M0 0 L18.79 0 L48.79 100 L30 100 Z"/><path transform="translate(0 312)" d="M30 100 L48.79 100 L78.79 0 L60 0 Z"/><path transform="translate(0 312)" d="M90 100 L108.79 100 L78.79 0 L60 0 Z"/><path transform="translate(0 312)" d="M120 0 L138.79 0 L108.79 100 L90 100 Z"/><path transform="translate(168.79 312)" d="M0 0 L18 0 L18 100 L0 100 Z"/><path transform="translate(226.79 312)" d="M0 0 L18 0 L18 82 L64 82 L64 100 L0 100 Z"/><path transform="translate(320.79 312)" d="M0 0 H40 A50 50 0 0 1 40 100 H0 Z M18 18 H40 A32 32 0 0 1 40 82 H18 Z"/><path transform="translate(448.79 312)" d="M0 0 L18 0 L18 100 L0 100 Z"/><path transform="translate(448.79 312)" d="M0 0 H44 A30 30 0 0 1 44 60 H0 Z M18 18 H44 A12 12 0 0 1 44 42 H18 Z"/><path transform="translate(448.79 312)" d="M34 42 L53.76 42 L80 100 L60.24 100 Z"/><path transform="translate(558.79 312)" d="M1.01 60 A50 50 0 1 1 98.99 60 Z"/><path transform="translate(558.79 312)" d="M4.17 70 A50 50 0 0 0 95.83 70 Z"/><path transform="translate(690.79 312)" d="M78 8.58 A50 50 0 1 0 78 91.42 L78 65.49 A32 32 0 1 1 78 34.51 Z"/><path transform="translate(806.79 312)" d="M0 0 L18 0 L18 100 L0 100 Z"/><path transform="translate(806.79 312)" d="M54.87 0 L78 0 L12 81.76 L12 53.1 Z"/><path transform="translate(806.79 312)" d="M31.7 43.03 L44.3 27.42 L78 100 L58.15 100 Z"/></g>
+</svg></div>
+    <div class="panel dark"><svg class="ls" aria-label="Wildrock" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 884.79 412" role="img">
+
+<g fill="currentColor" fill-rule="evenodd"><path d="M322.4 0 H562.4 V240 H322.4 Z M367.15 135.36 A76.8 76.8 0 1 1 517.64 135.36 Z M372.01 150.72 A76.8 76.8 0 0 0 512.78 150.72 Z"/><path transform="translate(0 312)" d="M0 0 L18.79 0 L48.79 100 L30 100 Z"/><path transform="translate(0 312)" d="M30 100 L48.79 100 L78.79 0 L60 0 Z"/><path transform="translate(0 312)" d="M90 100 L108.79 100 L78.79 0 L60 0 Z"/><path transform="translate(0 312)" d="M120 0 L138.79 0 L108.79 100 L90 100 Z"/><path transform="translate(168.79 312)" d="M0 0 L18 0 L18 100 L0 100 Z"/><path transform="translate(226.79 312)" d="M0 0 L18 0 L18 82 L64 82 L64 100 L0 100 Z"/><path transform="translate(320.79 312)" d="M0 0 H40 A50 50 0 0 1 40 100 H0 Z M18 18 H40 A32 32 0 0 1 40 82 H18 Z"/><path transform="translate(448.79 312)" d="M0 0 L18 0 L18 100 L0 100 Z"/><path transform="translate(448.79 312)" d="M0 0 H44 A30 30 0 0 1 44 60 H0 Z M18 18 H44 A12 12 0 0 1 44 42 H18 Z"/><path transform="translate(448.79 312)" d="M34 42 L53.76 42 L80 100 L60.24 100 Z"/><path transform="translate(558.79 312)" d="M1.01 60 A50 50 0 1 1 98.99 60 Z"/><path transform="translate(558.79 312)" d="M4.17 70 A50 50 0 0 0 95.83 70 Z"/><path transform="translate(690.79 312)" d="M78 8.58 A50 50 0 1 0 78 91.42 L78 65.49 A32 32 0 1 1 78 34.51 Z"/><path transform="translate(806.79 312)" d="M0 0 L18 0 L18 100 L0 100 Z"/><path transform="translate(806.79 312)" d="M54.87 0 L78 0 L12 81.76 L12 53.1 Z"/><path transform="translate(806.79 312)" d="M31.7 43.03 L44.3 27.42 L78 100 L58.15 100 Z"/></g>
+</svg></div>
+  </div>
+  <p class="note">Horizontal lockup: the tile is sized so its disc is exactly the size of the O, which puts both horizons on one continuous line. Minimum clear space is half the cap height on every side.</p>
+</section>
+
+<section class="wrap">
+  <div class="eyebrow">04 · Palette</div>
+  <h2>Limestone and ink, with the land as accent</h2>
+  <div class="palette">
+    <div class="sw"><div class="chip" style="background:#1C1B19"></div><div class="meta"><b>Ink</b><code>#1C1B19</code><span>The primary colour, for the mark, type and signage panels. It is warm black, never pure #000.</span></div></div>
+    <div class="sw"><div class="chip" style="background:#EEE9E0"></div><div class="meta"><b>Limestone</b><code>#EEE9E0</code><span>The ground, for paper, web backgrounds and reversed marks.</span></div></div>
+    <div class="sw"><div class="chip" style="background:#A65A3A"></div><div class="meta"><b>Desert Clay</b><code>#A65A3A</code><span>The single accent, used sparingly: the sun, a call to action, one detail per layout.</span></div></div>
+    <div class="sw"><div class="chip" style="background:#7E8B74"></div><div class="meta"><b>Sage</b><code>#7E8B74</code><span>A landscape secondary, for environmental graphics, illustration and site hoarding.</span></div></div>
+    <div class="sw"><div class="chip" style="background:#CDBFA8"></div><div class="meta"><b>Sandstone</b><code>#CDBFA8</code><span>A supporting neutral, for rules, cards, tints and material swatches.</span></div></div>
+  </div>
+  <div class="ratio" aria-label="Usage ratio">
+    <i style="flex:52;background:#EEE9E0;border:1px solid var(--line)"></i><i style="flex:28;background:#1C1B19"></i><i style="flex:10;background:#CDBFA8"></i><i style="flex:6;background:#7E8B74"></i><i style="flex:4;background:#A65A3A"></i>
+  </div>
+  <p class="note">Rough usage ratio: Limestone 52 · Ink 28 · Sandstone 10 · Sage 6 · Clay 4. The logo is always one colour, either Ink or Limestone. Clay is reserved for the scenery around the logo.</p>
+</section>
+
+<section class="wrap">
+  <div class="eyebrow">05 · Typography</div>
+  <h2>Custom wordmark, with Instrument Sans for everything else</h2>
+  <div class="type">
+    <div class="specimen">
+      <div class="aa">Aa</div>
+      <p class="note" style="margin-bottom:22px">Instrument Sans · Google Fonts · 400 / 500 / 600</p>
+      <div class="row"><small>Display 500</small><div class="s-display">Built around how you live.</div></div>
+      <div class="row"><small>Body 400</small><div class="s-body">We start by listening: how you cook, host, work and rest, and where the light falls at six in the evening. Then we design and build a home with the precision of a studio, shaped around those answers rather than a template.</div></div>
+      <div class="row"><small>Label 600</small><div class="s-label">Custom homes · Est. 2026</div></div>
+    </div>
+    <div class="anatomy">
+      <svg class="spec-wm" aria-label="Wildrock" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 884.79 100" role="img">
+
+<g fill="currentColor" fill-rule="evenodd"><path transform="translate(0 0)" d="M0 0 L18.79 0 L48.79 100 L30 100 Z"/><path transform="translate(0 0)" d="M30 100 L48.79 100 L78.79 0 L60 0 Z"/><path transform="translate(0 0)" d="M90 100 L108.79 100 L78.79 0 L60 0 Z"/><path transform="translate(0 0)" d="M120 0 L138.79 0 L108.79 100 L90 100 Z"/><path transform="translate(168.79 0)" d="M0 0 L18 0 L18 100 L0 100 Z"/><path transform="translate(226.79 0)" d="M0 0 L18 0 L18 82 L64 82 L64 100 L0 100 Z"/><path transform="translate(320.79 0)" d="M0 0 H40 A50 50 0 0 1 40 100 H0 Z M18 18 H40 A32 32 0 0 1 40 82 H18 Z"/><path transform="translate(448.79 0)" d="M0 0 L18 0 L18 100 L0 100 Z"/><path transform="translate(448.79 0)" d="M0 0 H44 A30 30 0 0 1 44 60 H0 Z M18 18 H44 A12 12 0 0 1 44 42 H18 Z"/><path transform="translate(448.79 0)" d="M34 42 L53.76 42 L80 100 L60.24 100 Z"/><path transform="translate(558.79 0)" d="M1.01 60 A50 50 0 1 1 98.99 60 Z"/><path transform="translate(558.79 0)" d="M4.17 70 A50 50 0 0 0 95.83 70 Z"/><path transform="translate(690.79 0)" d="M78 8.58 A50 50 0 1 0 78 91.42 L78 65.49 A32 32 0 1 1 78 34.51 Z"/><path transform="translate(806.79 0)" d="M0 0 L18 0 L18 100 L0 100 Z"/><path transform="translate(806.79 0)" d="M54.87 0 L78 0 L12 81.76 L12 53.1 Z"/><path transform="translate(806.79 0)" d="M31.7 43.03 L44.3 27.42 L78 100 L58.15 100 Z"/></g>
+</svg>
+      <ul>
+        <li><b>Cap height</b>: 100 units. <b>Stroke</b>: 18 units, the same on stems, bars and curves.</li>
+        <li><b>Horizon</b>: 60 units, through the O's cut, the R's bowl and the K's junction.</li>
+        <li><b>Geometry</b>: circles of radius 50 for D, O and C; flat-vertex diagonals for W, R and K.</li>
+        <li><b>Spacing</b>: set optically, with roughly 2× stroke between straight letters and less beside rounds and diagonals.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="eyebrow">06 · In context</div>
+  <h2>From the street to the browser tab</h2>
+  <div class="mocks">
+    <div>
+      <svg class="scene" viewBox="0 0 960 560" role="img" aria-label="Jobsite yard sign in a high-desert landscape">
+<rect width="960" height="560" fill="#E7E1D6"/>
+<circle cx="760" cy="250" r="54" fill="#A65A3A" opacity=".85"/>
+<polygon points="0,300 120,240 210,270 330,190 450,260 560,215 700,275 820,230 960,265 960,560 0,560" fill="#CDBFA8"/>
+<polygon points="0,360 140,320 260,345 400,300 540,350 680,320 820,355 960,330 960,560 0,560" fill="#7E8B74"/>
+<rect y="420" width="960" height="140" fill="#B7A98F"/>
+<rect y="420" width="960" height="6" fill="#A39579"/>
+<rect x="318" y="300" width="14" height="190" fill="#1C1B19"/>
+<rect x="628" y="300" width="14" height="190" fill="#1C1B19"/>
+<rect x="300" y="150" width="360" height="230" fill="#1C1B19"/>
+<svg x="340" y="186" width="280" height="130.4" viewBox="0 0 884.79 412"><g fill="#EEE9E0" fill-rule="evenodd"><path d="M322.4 0 H562.4 V240 H322.4 Z M367.15 135.36 A76.8 76.8 0 1 1 517.64 135.36 Z M372.01 150.72 A76.8 76.8 0 0 0 512.78 150.72 Z"/><path transform="translate(0 312)" d="M0 0 L18.79 0 L48.79 100 L30 100 Z"/><path transform="translate(0 312)" d="M30 100 L48.79 100 L78.79 0 L60 0 Z"/><path transform="translate(0 312)" d="M90 100 L108.79 100 L78.79 0 L60 0 Z"/><path transform="translate(0 312)" d="M120 0 L138.79 0 L108.79 100 L90 100 Z"/><path transform="translate(168.79 312)" d="M0 0 L18 0 L18 100 L0 100 Z"/><path transform="translate(226.79 312)" d="M0 0 L18 0 L18 82 L64 82 L64 100 L0 100 Z"/><path transform="translate(320.79 312)" d="M0 0 H40 A50 50 0 0 1 40 100 H0 Z M18 18 H40 A32 32 0 0 1 40 82 H18 Z"/><path transform="translate(448.79 312)" d="M0 0 L18 0 L18 100 L0 100 Z"/><path transform="translate(448.79 312)" d="M0 0 H44 A30 30 0 0 1 44 60 H0 Z M18 18 H44 A12 12 0 0 1 44 42 H18 Z"/><path transform="translate(448.79 312)" d="M34 42 L53.76 42 L80 100 L60.24 100 Z"/><path transform="translate(558.79 312)" d="M1.01 60 A50 50 0 1 1 98.99 60 Z"/><path transform="translate(558.79 312)" d="M4.17 70 A50 50 0 0 0 95.83 70 Z"/><path transform="translate(690.79 312)" d="M78 8.58 A50 50 0 1 0 78 91.42 L78 65.49 A32 32 0 1 1 78 34.51 Z"/><path transform="translate(806.79 312)" d="M0 0 L18 0 L18 100 L0 100 Z"/><path transform="translate(806.79 312)" d="M54.87 0 L78 0 L12 81.76 L12 53.1 Z"/><path transform="translate(806.79 312)" d="M31.7 43.03 L44.3 27.42 L78 100 L58.15 100 Z"/></g></svg>
+<rect x="340" y="338" width="280" height="2" fill="#EEE9E0" opacity=".35"/>
+<text x="340" y="362" fill="#EEE9E0" font-family="Instrument Sans, system-ui, sans-serif" font-size="13" letter-spacing="3">CUSTOM HOMES</text>
+<text x="620" y="362" fill="#EEE9E0" text-anchor="end" font-family="Instrument Sans, system-ui, sans-serif" font-size="13" letter-spacing="1.5">wildrock.build</text>
+<rect x="0" y="490" width="960" height="70" fill="#AD9F84"/>
+</svg>
+      <p class="mock-cap">Jobsite yard sign: Ink panel with the stacked lockup reversed in Limestone, built to read from the kerb.</p>
+    </div>
+    <div>
+      <div class="site">
+        <div class="bar"><i></i><i></i><i></i></div>
+        <nav><svg class="hdr-wm" aria-label="Wildrock" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 884.79 100" role="img">
+
+<g fill="currentColor" fill-rule="evenodd"><path transform="translate(0 0)" d="M0 0 L18.79 0 L48.79 100 L30 100 Z"/><path transform="translate(0 0)" d="M30 100 L48.79 100 L78.79 0 L60 0 Z"/><path transform="translate(0 0)" d="M90 100 L108.79 100 L78.79 0 L60 0 Z"/><path transform="translate(0 0)" d="M120 0 L138.79 0 L108.79 100 L90 100 Z"/><path transform="translate(168.79 0)" d="M0 0 L18 0 L18 100 L0 100 Z"/><path transform="translate(226.79 0)" d="M0 0 L18 0 L18 82 L64 82 L64 100 L0 100 Z"/><path transform="translate(320.79 0)" d="M0 0 H40 A50 50 0 0 1 40 100 H0 Z M18 18 H40 A32 32 0 0 1 40 82 H18 Z"/><path transform="translate(448.79 0)" d="M0 0 L18 0 L18 100 L0 100 Z"/><path transform="translate(448.79 0)" d="M0 0 H44 A30 30 0 0 1 44 60 H0 Z M18 18 H44 A12 12 0 0 1 44 42 H18 Z"/><path transform="translate(448.79 0)" d="M34 42 L53.76 42 L80 100 L60.24 100 Z"/><path transform="translate(558.79 0)" d="M1.01 60 A50 50 0 1 1 98.99 60 Z"/><path transform="translate(558.79 0)" d="M4.17 70 A50 50 0 0 0 95.83 70 Z"/><path transform="translate(690.79 0)" d="M78 8.58 A50 50 0 1 0 78 91.42 L78 65.49 A32 32 0 1 1 78 34.51 Z"/><path transform="translate(806.79 0)" d="M0 0 L18 0 L18 100 L0 100 Z"/><path transform="translate(806.79 0)" d="M54.87 0 L78 0 L12 81.76 L12 53.1 Z"/><path transform="translate(806.79 0)" d="M31.7 43.03 L44.3 27.42 L78 100 L58.15 100 Z"/></g>
+</svg><ul><li>Homes</li><li>Process</li><li>Studio</li><li>Journal</li></ul><span class="cta">Start a home</span></nav>
+        <div class="heroimg"><div class="sun"></div><h4>Built around how you live.</h4></div>
+      </div>
+      <p class="mock-cap">Website header: the wordmark alone, with the clay sun used once in the hero image.</p>
+    </div>
+    <div class="row3">
+      <div>
+        <div class="avatar-card">
+          <div class="av-wrap"><svg class="av" aria-label="Wildrock mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img">
+
+<g fill="currentColor" fill-rule="evenodd"><path d="M0 0 H100 V100 H0 Z M18.65 56.4 A32 32 0 1 1 81.35 56.4 Z M20.67 62.8 A32 32 0 0 0 79.33 62.8 Z"/></g>
+</svg></div>
+          <div class="name">Wildrock</div>
+          <div class="handle">@wildrock.homes</div>
+          <div class="stats"><span><b>48</b> posts</span><span><b>2.1k</b> followers</span></div>
+          <div class="av-row"><div class="av-sm"><svg class="av" aria-label="Wildrock mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img">
+
+<g fill="currentColor" fill-rule="evenodd"><path d="M0 0 H100 V100 H0 Z M18.65 56.4 A32 32 0 1 1 81.35 56.4 Z M20.67 62.8 A32 32 0 0 0 79.33 62.8 Z"/></g>
+</svg></div><div class="av-sm c"><svg class="av" aria-label="Wildrock mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img">
+
+<g fill="currentColor" fill-rule="evenodd"><path d="M0 0 H100 V100 H0 Z M18.65 56.4 A32 32 0 1 1 81.35 56.4 Z M20.67 62.8 A32 32 0 0 0 79.33 62.8 Z"/></g>
+</svg></div></div>
+        </div>
+        <p class="mock-cap">Social avatar: the tile survives a circular crop.</p>
+      </div>
+      <div>
+        <div class="tabs">
+          <div class="tabstrip">
+            <div class="tab on"><svg class="fav" aria-label="Wildrock favicon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" role="img">
+
+<g fill="currentColor" fill-rule="evenodd"><path d="M0 0 H16 V16 H0 Z M2.29 8.73 A5.76 5.76 0 1 1 13.71 8.73 Z M2.93 10.73 A5.76 5.76 0 0 0 13.07 10.73 Z"/></g>
+</svg><span>Wildrock · Custom Homes</span></div>
+            <div class="tab"><i class="g"></i><span>Inbox</span></div>
+          </div>
+          <div class="urlbar"><div>wildrock.build</div></div>
+          <div class="page"></div>
+        </div>
+        <div class="tabs dark-tabs">
+          <div class="tabstrip">
+            <div class="tab on"><svg class="fav" aria-label="Wildrock favicon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" role="img">
+
+<g fill="currentColor" fill-rule="evenodd"><path d="M0 0 H16 V16 H0 Z M2.29 8.73 A5.76 5.76 0 1 1 13.71 8.73 Z M2.93 10.73 A5.76 5.76 0 0 0 13.07 10.73 Z"/></g>
+</svg><span>Wildrock · Custom Homes</span></div>
+            <div class="tab"><i class="g" style="background:#5A564F"></i><span>Inbox</span></div>
+          </div>
+        </div>
+        <p class="mock-cap">Browser tab favicon at 16 px, on light and dark.</p>
+      </div>
+      <div>
+        <svg class="scene" viewBox="0 0 640 400" role="img" aria-label="Single-colour watermark over a landscape photograph">
+<rect width="640" height="400" fill="#5F6656"/>
+<polygon points="0,210 90,160 170,190 260,120 360,185 450,150 540,195 640,170 640,400 0,400" fill="#4C5446"/>
+<polygon points="0,280 120,250 240,272 360,236 500,276 640,250 640,400 0,400" fill="#3D4438"/>
+<rect y="330" width="640" height="70" fill="#353A30"/>
+<g opacity=".22"><svg x="410" y="60" width="180" height="180" viewBox="0 0 100 100"><g fill="#FFFFFF" fill-rule="evenodd"><path d="M0 0 H100 V100 H0 Z M18.65 56.4 A32 32 0 1 1 81.35 56.4 Z M20.67 62.8 A32 32 0 0 0 79.33 62.8 Z"/></g></svg></g>
+<g opacity=".9"><svg x="32" y="356" width="150" height="16.95" viewBox="0 0 884.79 100"><g fill="#FFFFFF" fill-rule="evenodd"><path transform="translate(0 0)" d="M0 0 L18.79 0 L48.79 100 L30 100 Z"/><path transform="translate(0 0)" d="M30 100 L48.79 100 L78.79 0 L60 0 Z"/><path transform="translate(0 0)" d="M90 100 L108.79 100 L78.79 0 L60 0 Z"/><path transform="translate(0 0)" d="M120 0 L138.79 0 L108.79 100 L90 100 Z"/><path transform="translate(168.79 0)" d="M0 0 L18 0 L18 100 L0 100 Z"/><path transform="translate(226.79 0)" d="M0 0 L18 0 L18 82 L64 82 L64 100 L0 100 Z"/><path transform="translate(320.79 0)" d="M0 0 H40 A50 50 0 0 1 40 100 H0 Z M18 18 H40 A32 32 0 0 1 40 82 H18 Z"/><path transform="translate(448.79 0)" d="M0 0 L18 0 L18 100 L0 100 Z"/><path transform="translate(448.79 0)" d="M0 0 H44 A30 30 0 0 1 44 60 H0 Z M18 18 H44 A12 12 0 0 1 44 42 H18 Z"/><path transform="translate(448.79 0)" d="M34 42 L53.76 42 L80 100 L60.24 100 Z"/><path transform="translate(558.79 0)" d="M1.01 60 A50 50 0 1 1 98.99 60 Z"/><path transform="translate(558.79 0)" d="M4.17 70 A50 50 0 0 0 95.83 70 Z"/><path transform="translate(690.79 0)" d="M78 8.58 A50 50 0 1 0 78 91.42 L78 65.49 A32 32 0 1 1 78 34.51 Z"/><path transform="translate(806.79 0)" d="M0 0 L18 0 L18 100 L0 100 Z"/><path transform="translate(806.79 0)" d="M54.87 0 L78 0 L12 81.76 L12 53.1 Z"/><path transform="translate(806.79 0)" d="M31.7 43.03 L44.3 27.42 L78 100 L58.15 100 Z"/></g></svg></g>
+</svg>
+        <p class="mock-cap">Watermark: one colour, white at 22% opacity.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">Wildrock · Direction C · Horizon Wordmark · All marks are hand-built SVG geometry.</footer>
+</body>
+</html>

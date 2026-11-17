@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 116" width="520" height="232" role="img" aria-labelledby="t">
+  <title id="t">Wildrock stacked lockup</title>
+  <style>@import url(https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600&amp;display=swap); .wm{font-family:'Inter Tight','Helvetica Neue',Arial,sans-serif;font-weight:600;font-size:28px}</style>
+  <g fill="#1E2A25">
+    <path transform="translate(130 0) scale(1.2) translate(-50 -20)" d="M9 26 L26 20 L36.75 41.5 L34.25 76.5Z M40.85 40.3 L38.35 75.3 L50 52 L61.65 75.3 L59.15 40.3 L50 22Z M65.75 76.5 L63.25 41.5 L74 20 L91 26Z"/>
+    <text class="wm" x="0" y="114" textLength="260" lengthAdjust="spacing">WILDROCK</text>
+  </g>
+</svg>
