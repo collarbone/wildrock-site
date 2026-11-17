@@ -319,7 +319,7 @@ ul,ol{padding:0;list-style:none}
         <div class="trade-text reveal">
           <h2 id="trades-title" class="h-l">Good buildings take good people.</h2>
           <p class="body-l">We work with subcontractors, suppliers, architects and land partners who take pride in their work. If that is you, we would like to hear from you.</p>
-          <a class="cta" style="margin-top:36px" href="mailto:jamison@wildrock.build?subject=Trade%20%2F%20partner%20introduction">Introduce yourself <span class="arr" aria-hidden="true">&rarr;</span></a>
+          <a class="cta" style="margin-top:36px" href="#contact" data-mail data-subject="Trade / partner introduction">Introduce yourself <span class="arr" aria-hidden="true">&rarr;</span></a>
         </div>
         <ul class="checks trade-list reveal">
           <li>Complete plans and clear scopes before work starts</li>
@@ -339,10 +339,10 @@ ul,ol{padding:0;list-style:none}
         <div class="contact-head reveal">
           <h2 id="contact-title" class="h-xl">Let's build something worth living in.</h2>
           <p class="body-l">For trades, partners, land and project enquiries, email is the best way to reach us.</p>
-          <a class="cta" href="mailto:jamison@wildrock.build">Email Wildrock <span class="arr" aria-hidden="true">&rarr;</span></a>
+          <a class="cta" href="#contact" data-mail>Email Wildrock <span class="arr" aria-hidden="true">&rarr;</span></a>
         </div>
         <dl class="details reveal">
-          <div><dt>Email</dt><dd><a href="mailto:jamison@wildrock.build">jamison@wildrock.build</a></dd></div>
+          <div><dt>Email</dt><dd><a href="#contact" data-mail data-mail-text>jamison [at] wildrock [dot] build</a></dd></div>
           <div><dt>Based in</dt><dd>Northwest Arkansas</dd></div>
           <div><dt>Focus</dt><dd>Spec homes &amp; small multifamily</dd></div>
         </dl>
@@ -357,7 +357,7 @@ ul,ol{padding:0;list-style:none}
     <div class="foot-row">
       <p>&copy; 2026 Wildrock. All rights reserved.</p>
       <p>Northwest Arkansas</p>
-      <p><a href="mailto:jamison@wildrock.build">jamison@wildrock.build</a></p>
+      <p><a href="#contact" data-mail data-mail-text>jamison [at] wildrock [dot] build</a></p>
     </div>
   </div>
 </footer>
@@ -369,6 +369,15 @@ ul,ol{padding:0;list-style:none}
   var btn = document.querySelector('.menu-btn');
   var nav = document.getElementById('site-nav');
   var heroMark = document.querySelector('.hero-mark');
+
+  // Email is assembled at runtime so it never appears in the page source.
+  var addr = [106,97,109,105,115,111,110].map(function (c) { return String.fromCharCode(c); }).join('')
+    + String.fromCharCode(64) + ['wildrock', 'build'].join('.');
+  document.querySelectorAll('[data-mail]').forEach(function (a) {
+    var sub = a.getAttribute('data-subject');
+    a.href = 'mail' + 'to:' + addr + (sub ? '?subject=' + encodeURIComponent(sub) : '');
+    if (a.hasAttribute('data-mail-text')) a.textContent = addr;
+  });
 
   function setMenu(open) {
     btn.setAttribute('aria-expanded', String(open));
