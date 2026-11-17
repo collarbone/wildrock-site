@@ -21,12 +21,12 @@
   .traits span{border:1px solid var(--line);border-radius:99px;padding:4px 14px;font-size:14px}
   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px}
   .card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
-  .hero{aspect-ratio:4/3;display:grid;place-items:center;background:#ECE8E1;padding:48px}
-  .hero img{max-width:62%;max-height:100%}
+  .hero{aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;background:#ECE8E1;padding:48px}
+  .hero svg{width:62%;height:auto;max-height:100%;display:block}
   .lock{padding:28px 28px 8px;display:grid;place-items:center;min-height:110px;border-bottom:1px solid var(--line);background:#fff}
-  .lock img{width:100%;max-height:70px;object-fit:contain}
+  .lock svg{width:100%;height:70px;display:block}
   .sizes{display:flex;align-items:flex-end;gap:18px;padding:18px 28px;background:var(--dark)}
-  .sizes img{filter:none}
+  .sizes svg{display:block;flex:none}
   .body{padding:22px 28px 28px;flex:1;display:flex;flex-direction:column;gap:10px}
   .body h2{font:500 22px/1.2 "Inter Tight",sans-serif}
   .body h2 small{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
@@ -51,9 +51,17 @@
 
   <div class="grid">
     <article class="card">
-      <div class="hero"><img src="direction-a/mark.svg" alt="Direction A mark"></div>
-      <div class="lock"><img src="direction-a/lockup-horizontal.svg" alt="Direction A lockup"></div>
-      <div class="sizes"><img src="direction-a/favicon.svg" width="64" height="64" alt=""><img src="direction-a/favicon.svg" width="32" height="32" alt=""><img src="direction-a/favicon.svg" width="16" height="16" alt=""></div>
+      <div class="hero"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Wildrock mark (Strata)" class="svgfit" preserveAspectRatio="xMidYMid meet"><path fill="#23221F" d="M4 4 14 4 16.05 15 4 15ZM50 4 60 4 60 15 47.95 15ZM4 19 16.79 19 18.84 30 4 30ZM47.21 19 60 19 60 30 45.16 30ZM27.21 19 36.79 19 38.84 30 25.16 30ZM4 34 19.58 34 21.63 45 4 45ZM44.42 34 60 34 60 45 42.37 45ZM24.42 34 39.58 34 41.63 45 22.37 45ZM4 49 60 49 60 60 4 60Z"/></svg></div>
+      <div class="lock"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 323.31 64" role="img" aria-label="Wildrock horizontal lockup" class="svgfit" preserveAspectRatio="xMidYMid meet"><g fill="#23221F"><path d="M4 4 14 4 16.05 15 4 15ZM50 4 60 4 60 15 47.95 15ZM4 19 16.79 19 18.84 30 4 30ZM47.21 19 60 19 60 30 45.16 30ZM27.21 19 36.79 19 38.84 30 25.16 30ZM4 34 19.58 34 21.63 45 4 45ZM44.42 34 60 34 60 45 42.37 45ZM24.42 34 39.58 34 41.63 45 22.37 45ZM4 49 60 49 60 60 4 60Z"/><g transform="translate(82 19) scale(0.65)"><path transform="translate(0 0)" fill-rule="nonzero" d="M0 0 5.42 0 18.42 40 13 40ZM26 0 31.42 0 18.42 40 13 40ZM26 0 31.42 0 44.42 40 39 40ZM52 0 57.42 0 44.42 40 39 40Z"/>
+<path transform="translate(71.42 0)" fill-rule="nonzero" d="M0 0 5.6 0 5.6 40 0 40Z"/>
+<path transform="translate(91.02 0)" fill-rule="nonzero" d="M0 0 5.6 0 5.6 34.4 24 34.4 24 40 0 40Z"/>
+<path transform="translate(129.02 0)" fill-rule="evenodd" d="M0 0H20A20 20 0 0 1 20 40H0ZM5.6 5.6V34.4H20A14.4 14.4 0 0 0 20 5.6Z"/>
+<path transform="translate(183.02 0)" fill-rule="evenodd" d="M0 0H17.5A11.5 11.5 0 0 1 17.5 23H5.6V40H0ZM5.6 5.6V17.4H17.5A5.9 5.9 0 0 0 17.5 5.6Z"/>
+<path transform="translate(183.02 0)" d="M11.32 22.99 18.68 22.99 33.18 40 25.82 40Z"/>
+<path transform="translate(228.7 0)" fill-rule="evenodd" d="M0 20A20 20 0 1 1 40 20A20 20 0 1 1 0 20ZM5.6 20A14.4 14.4 0 1 0 34.4 20A14.4 14.4 0 1 0 5.6 20Z"/>
+<path transform="translate(281.2 0)" fill-rule="nonzero" d="M33.38 5.14A20 20 0 1 0 33.38 34.86L33.38 25.32A14.4 14.4 0 1 1 33.38 14.68Z"/>
+<path transform="translate(328.58 0)" fill-rule="nonzero" d="M0 0 5.6 0 5.6 40 0 40ZM23.68 0 32 0 5.6 28.49 5.6 19.51ZM10.54 14.88 17.56 14.88 36.51 40 29.49 40Z"/></g></g></svg></div>
+      <div class="sizes"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Wildrock favicon" width="64" height="64" preserveAspectRatio="xMidYMid meet"><rect width="64" height="64" rx="14" fill="#23221F"/><path fill="#ECE8E1" transform="translate(6.4 6.4) scale(.8)" d="M5 5 15 5 18.03 19 5 19ZM49 5 59 5 59 19 45.97 19ZM5 25 19.32 25 22.35 39 5 39ZM44.68 25 59 25 59 39 41.65 39ZM27.25 25 36.75 25 40.25 39 23.75 39ZM5 45 59 45 59 59 5 59Z"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Wildrock favicon" width="32" height="32" preserveAspectRatio="xMidYMid meet"><rect width="64" height="64" rx="14" fill="#23221F"/><path fill="#ECE8E1" transform="translate(6.4 6.4) scale(.8)" d="M5 5 15 5 18.03 19 5 19ZM49 5 59 5 59 19 45.97 19ZM5 25 19.32 25 22.35 39 5 39ZM44.68 25 59 25 59 39 41.65 39ZM27.25 25 36.75 25 40.25 39 23.75 39ZM5 45 59 45 59 59 5 59Z"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Wildrock favicon" width="16" height="16" preserveAspectRatio="xMidYMid meet"><rect width="64" height="64" rx="14" fill="#23221F"/><path fill="#ECE8E1" transform="translate(6.4 6.4) scale(.8)" d="M5 5 15 5 18.03 19 5 19ZM49 5 59 5 59 19 45.97 19ZM5 25 19.32 25 22.35 39 5 39ZM44.68 25 59 25 59 39 41.65 39ZM27.25 25 36.75 25 40.25 39 23.75 39ZM5 45 59 45 59 59 5 59Z"/></svg></div>
       <div class="body">
         <h2><small>Direction A · Abstract mark</small>Strata</h2>
         <p>Four bands of rock strata are cut by two canyons, and the negative space forms a W. It reads as landform on a precise grid.</p>
@@ -68,9 +76,35 @@
     </article>
 
     <article class="card">
-      <div class="hero"><img src="direction-b/mark.svg" alt="Direction B mark"></div>
-      <div class="lock"><img src="direction-b/lockup-horizontal.svg" alt="Direction B lockup"></div>
-      <div class="sizes"><img src="direction-b/favicon.svg" width="64" height="64" alt=""><img src="direction-b/favicon.svg" width="32" height="32" alt=""><img src="direction-b/favicon.svg" width="16" height="16" alt=""></div>
+      <div class="hero"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" class="svgfit" preserveAspectRatio="xMidYMid meet">
+  
+  <!-- Three flat planes: two outer chiselled blades and a central peak, separated by negative-space cuts. One colour. -->
+  <path fill="#1E2A25" transform="translate(0 1.75)" d="M9 26 L26 20 L36.75 41.5 L34.25 76.5Z M40.85 40.3 L38.35 75.3 L50 52 L61.65 75.3 L59.15 40.3 L50 22Z M65.75 76.5 L63.25 41.5 L74 20 L91 26Z"/>
+</svg></div>
+      <div class="lock"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 57" role="img" class="svgfit" preserveAspectRatio="xMidYMid meet">
+  
+  <style>@import url(https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600&amp;display=swap); .wm{font-family:'Inter Tight','Helvetica Neue',Arial,sans-serif;font-weight:600;font-size:34.5px}</style>
+  <g fill="#1E2A25">
+    <path transform="translate(-9 -20)" d="M9 26 L26 20 L36.75 41.5 L34.25 76.5Z M40.85 40.3 L38.35 75.3 L50 52 L61.65 75.3 L59.15 40.3 L50 22Z M65.75 76.5 L63.25 41.5 L74 20 L91 26Z"/>
+    <text class="wm" x="110" y="40.8" textLength="290" lengthAdjust="spacing">WILDROCK</text>
+  </g>
+</svg></div>
+      <div class="sizes"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="64" height="64" preserveAspectRatio="xMidYMid meet">
+  
+  <!-- Tile + favicon-cut mark: wider facet gaps (6.5 vs 4) so the cuts survive at 32px. -->
+  <rect width="100" height="100" rx="18" fill="#1E2A25"/>
+  <path fill="#F3F0E8" transform="translate(50 50) scale(0.94) translate(-50 -47.13)" d="M9 26 L27 20 L35.63 37.26 L33.13 74.26Z M42.27 35.47 L39.77 72.47 L50 52 L60.23 72.47 L57.73 35.47 L50 20Z M66.87 74.26 L64.37 37.26 L73 20 L91 26Z"/>
+</svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="32" height="32" preserveAspectRatio="xMidYMid meet">
+  
+  <!-- Tile + favicon-cut mark: wider facet gaps (6.5 vs 4) so the cuts survive at 32px. -->
+  <rect width="100" height="100" rx="18" fill="#1E2A25"/>
+  <path fill="#F3F0E8" transform="translate(50 50) scale(0.94) translate(-50 -47.13)" d="M9 26 L27 20 L35.63 37.26 L33.13 74.26Z M42.27 35.47 L39.77 72.47 L50 52 L60.23 72.47 L57.73 35.47 L50 20Z M66.87 74.26 L64.37 37.26 L73 20 L91 26Z"/>
+</svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="16" height="16" preserveAspectRatio="xMidYMid meet">
+  
+  <!-- Tile + favicon-cut mark: wider facet gaps (6.5 vs 4) so the cuts survive at 32px. -->
+  <rect width="100" height="100" rx="18" fill="#1E2A25"/>
+  <path fill="#F3F0E8" transform="translate(50 50) scale(0.94) translate(-50 -47.13)" d="M9 26 L27 20 L35.63 37.26 L33.13 74.26Z M42.27 35.47 L39.77 72.47 L50 52 L60.23 72.47 L57.73 35.47 L50 20Z M66.87 74.26 L64.37 37.26 L73 20 L91 26Z"/>
+</svg></div>
       <div class="body">
         <h2><small>Direction B · Monogram</small>Faceted W</h2>
         <p>A W cleaved from three stone planes. The silhouette doubles as a twin-peak ridgeline: peak, saddle, summit, saddle, peak.</p>
@@ -85,9 +119,24 @@
     </article>
 
     <article class="card">
-      <div class="hero" style="background:#1C1B19"><img src="direction-c/mark.svg" alt="Direction C mark" style="max-width:56%"></div>
-      <div class="lock"><img src="direction-c/wordmark.svg" alt="Direction C wordmark"></div>
-      <div class="sizes"><img src="direction-c/favicon.svg" width="64" height="64" alt=""><img src="direction-c/favicon.svg" width="32" height="32" alt=""><img src="direction-c/favicon.svg" width="16" height="16" alt=""></div>
+      <div class="hero" style="background:#1C1B19"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Wildrock mark" class="svgfit" style="max-width:56%" preserveAspectRatio="xMidYMid meet">
+
+<g fill="#1C1B19" fill-rule="evenodd"><path d="M0 0 H100 V100 H0 Z M18.65 56.4 A32 32 0 1 1 81.35 56.4 Z M20.67 62.8 A32 32 0 0 0 79.33 62.8 Z"/></g>
+</svg></div>
+      <div class="lock"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 884.79 100" role="img" aria-label="Wildrock" class="svgfit" preserveAspectRatio="xMidYMid meet">
+
+<g fill="#1C1B19" fill-rule="evenodd"><path transform="translate(0 0)" d="M0 0 L18.79 0 L48.79 100 L30 100 Z"/><path transform="translate(0 0)" d="M30 100 L48.79 100 L78.79 0 L60 0 Z"/><path transform="translate(0 0)" d="M90 100 L108.79 100 L78.79 0 L60 0 Z"/><path transform="translate(0 0)" d="M120 0 L138.79 0 L108.79 100 L90 100 Z"/><path transform="translate(168.79 0)" d="M0 0 L18 0 L18 100 L0 100 Z"/><path transform="translate(226.79 0)" d="M0 0 L18 0 L18 82 L64 82 L64 100 L0 100 Z"/><path transform="translate(320.79 0)" d="M0 0 H40 A50 50 0 0 1 40 100 H0 Z M18 18 H40 A32 32 0 0 1 40 82 H18 Z"/><path transform="translate(448.79 0)" d="M0 0 L18 0 L18 100 L0 100 Z"/><path transform="translate(448.79 0)" d="M0 0 H44 A30 30 0 0 1 44 60 H0 Z M18 18 H44 A12 12 0 0 1 44 42 H18 Z"/><path transform="translate(448.79 0)" d="M34 42 L53.76 42 L80 100 L60.24 100 Z"/><path transform="translate(558.79 0)" d="M1.01 60 A50 50 0 1 1 98.99 60 Z"/><path transform="translate(558.79 0)" d="M4.17 70 A50 50 0 0 0 95.83 70 Z"/><path transform="translate(690.79 0)" d="M78 8.58 A50 50 0 1 0 78 91.42 L78 65.49 A32 32 0 1 1 78 34.51 Z"/><path transform="translate(806.79 0)" d="M0 0 L18 0 L18 100 L0 100 Z"/><path transform="translate(806.79 0)" d="M54.87 0 L78 0 L12 81.76 L12 53.1 Z"/><path transform="translate(806.79 0)" d="M31.7 43.03 L44.3 27.42 L78 100 L58.15 100 Z"/></g>
+</svg></div>
+      <div class="sizes"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" role="img" aria-label="Wildrock" width="64" height="64" preserveAspectRatio="xMidYMid meet">
+
+<g fill="#1C1B19" fill-rule="evenodd"><path d="M0 0 H16 V16 H0 Z M2.29 8.73 A5.76 5.76 0 1 1 13.71 8.73 Z M2.93 10.73 A5.76 5.76 0 0 0 13.07 10.73 Z"/></g>
+</svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" role="img" aria-label="Wildrock" width="32" height="32" preserveAspectRatio="xMidYMid meet">
+
+<g fill="#1C1B19" fill-rule="evenodd"><path d="M0 0 H16 V16 H0 Z M2.29 8.73 A5.76 5.76 0 1 1 13.71 8.73 Z M2.93 10.73 A5.76 5.76 0 0 0 13.07 10.73 Z"/></g>
+</svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" role="img" aria-label="Wildrock" width="16" height="16" preserveAspectRatio="xMidYMid meet">
+
+<g fill="#1C1B19" fill-rule="evenodd"><path d="M0 0 H16 V16 H0 Z M2.29 8.73 A5.76 5.76 0 1 1 13.71 8.73 Z M2.93 10.73 A5.76 5.76 0 0 0 13.07 10.73 Z"/></g>
+</svg></div>
       <div class="body">
         <h2><small>Direction C · Custom wordmark + mark</small>Horizon</h2>
         <p>Custom geometric capitals. The O in ROCK is a solid stone or sun disc cut by a horizon line. The companion tile is a landscape seen through a window.</p>
