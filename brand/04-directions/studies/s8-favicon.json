@@ -1,0 +1,16 @@
+{
+ "width": 200,
+ "height": 200,
+ "pad": 0,
+ "elements": [
+  {
+   "type": "text",
+   "font": "/Users/j0h0lr7/Documents/wildrock/brand/tools/fonts/_instances/Fraunces-Italic-SOFT30_WONK0_opsz72_wght480.ttf",
+   "text": "w",
+   "x": 6,
+   "y": 150,
+   "size": 200,
+   "tracking": 0
+  }
+ ]
+}

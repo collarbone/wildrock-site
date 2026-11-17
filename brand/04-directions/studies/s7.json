@@ -1,0 +1,16 @@
+{
+ "width": 942.2,
+ "height": 250,
+ "pad": 24,
+ "elements": [
+  {
+   "type": "text",
+   "font": "/Users/j0h0lr7/Documents/wildrock/brand/tools/fonts/_instances/BodoniModa-opsz28_wght640.ttf",
+   "text": "Wildrock.",
+   "x": 0,
+   "y": 200,
+   "size": 200,
+   "tracking": -10
+  }
+ ]
+}

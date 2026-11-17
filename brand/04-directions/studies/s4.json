@@ -1,0 +1,16 @@
+{
+ "width": 1188.81,
+ "height": 200,
+ "pad": 24,
+ "elements": [
+  {
+   "type": "text",
+   "font": "/Users/j0h0lr7/Documents/wildrock/brand/tools/fonts/marcellus/Marcellus-Regular.ttf",
+   "text": "WILDROCK",
+   "x": 0,
+   "y": 170,
+   "size": 170,
+   "tracking": 260
+  }
+ ]
+}

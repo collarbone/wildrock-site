@@ -1,0 +1,16 @@
+{
+ "width": 200,
+ "height": 200,
+ "pad": 0,
+ "elements": [
+  {
+   "type": "text",
+   "font": "/Users/j0h0lr7/Documents/wildrock/brand/tools/fonts/_instances/HankenGrotesk-wght720.ttf",
+   "text": "W",
+   "x": 2,
+   "y": 160,
+   "size": 200,
+   "tracking": 0
+  }
+ ]
+}

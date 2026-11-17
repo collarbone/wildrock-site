@@ -1,0 +1,25 @@
+{
+ "width": 441.48,
+ "height": 350,
+ "pad": 24,
+ "elements": [
+  {
+   "type": "text",
+   "font": "/Users/j0h0lr7/Documents/wildrock/brand/tools/fonts/_instances/Fraunces-Italic-SOFT30_WONK0_opsz72_wght480.ttf",
+   "text": "wild",
+   "x": 0,
+   "y": 190,
+   "size": 230,
+   "tracking": 0
+  },
+  {
+   "type": "text",
+   "font": "/Users/j0h0lr7/Documents/wildrock/brand/tools/fonts/marcellus/Marcellus-Regular.ttf",
+   "text": "ROCK",
+   "x": 6,
+   "y": 330,
+   "size": 110,
+   "tracking": 400.8484844751657
+  }
+ ]
+}

@@ -93,10 +93,12 @@ def paint(draw, el, S, ox, oy):
     elif t == "stroke":
         pts = [tuple(p) for p in el["points"]]
         path = catmull_rom(pts) if el.get("smooth", True) else pts
-        path = densify(path, step=max(0.5, el["width"] / 12))
+        nib = el.get("nib")
+        # nib stamps are thin rectangles: sample densely enough that consecutive stamps overlap
+        step = max(0.15, el["width"] * nib.get("ratio", 0.25) / 3) if nib else max(0.5, el["width"] / 12)
+        path = densify(path, step=step)
         n = len(path)
         t0, t1 = el.get("taper", [1, 1])
-        nib = el.get("nib")
         for i, (x, y) in enumerate(path):
             f = t0 + (t1 - t0) * (i / max(1, n - 1))
             w = el["width"] * f

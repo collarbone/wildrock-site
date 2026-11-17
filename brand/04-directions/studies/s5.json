@@ -1,0 +1,34 @@
+{
+ "width": 1077.28,
+ "height": 190,
+ "pad": 24,
+ "elements": [
+  {
+   "type": "text",
+   "font": "/Users/j0h0lr7/Documents/wildrock/brand/tools/fonts/_instances/Manrope-wght430.ttf",
+   "text": "WILDROCK",
+   "x": 0,
+   "y": 160,
+   "size": 150,
+   "tracking": 120
+  },
+  {
+   "type": "text",
+   "font": "/Users/j0h0lr7/Documents/wildrock/brand/tools/fonts/_instances/Manrope-wght560.ttf",
+   "text": "CUSTOM",
+   "x": 916.3,
+   "y": 86,
+   "size": 30,
+   "tracking": 220
+  },
+  {
+   "type": "text",
+   "font": "/Users/j0h0lr7/Documents/wildrock/brand/tools/fonts/_instances/Manrope-wght560.ttf",
+   "text": "HOMES",
+   "x": 916.3,
+   "y": 128,
+   "size": 30,
+   "tracking": 220
+  }
+ ]
+}

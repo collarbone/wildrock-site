@@ -1,0 +1,25 @@
+{
+ "width": 786.6,
+ "height": 250,
+ "pad": 24,
+ "elements": [
+  {
+   "type": "text",
+   "font": "/Users/j0h0lr7/Documents/wildrock/brand/tools/fonts/_instances/HankenGrotesk-wght720.ttf",
+   "text": "Wild",
+   "x": 0,
+   "y": 200,
+   "size": 200,
+   "tracking": -20
+  },
+  {
+   "type": "text",
+   "font": "/Users/j0h0lr7/Documents/wildrock/brand/tools/fonts/_instances/Fraunces-Italic-SOFT30_WONK0_opsz72_wght480.ttf",
+   "text": "rock",
+   "x": 407.8,
+   "y": 200,
+   "size": 200,
+   "tracking": 0
+  }
+ ]
+}

@@ -1,0 +1,16 @@
+{
+ "width": 200,
+ "height": 200,
+ "pad": 0,
+ "elements": [
+  {
+   "type": "text",
+   "font": "/Users/j0h0lr7/Documents/wildrock/brand/tools/fonts/_instances/Manrope-wght430.ttf",
+   "text": "W",
+   "x": 10,
+   "y": 150,
+   "size": 170,
+   "tracking": 0
+  }
+ ]
+}
