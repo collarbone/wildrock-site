@@ -71,6 +71,8 @@ p { margin: 0 0 1em; }
 .brand:hover { color: #fff; }
 .brand em { font-style: normal; font-weight: 500; color: var(--amber); }
 .brand-mark { width: 32px; height: 32px; color: var(--amber); }
+.brand-logo { height: 30px; width: auto; display: block; color: currentColor; }
+.site-footer .brand-logo { height: 26px; }
 .site-nav { display: flex; align-items: center; gap: 28px; }
 .site-nav ul { display: flex; gap: 24px; list-style: none; margin: 0; padding: 0; }
 .site-nav ul a { color: var(--stone-light); text-decoration: none; font-weight: 500; font-size: .97rem; }
@@ -224,6 +226,7 @@ p { margin: 0 0 1em; }
   .container { padding: 0 16px; }
   .hero-inner { padding: 0 16px; }
   .brand { font-size: 1.12rem; }
+  .brand-logo { height: 24px; }
   .hero-ctas .btn { width: 100%; }
   .stats { gap: 10px; }
   .stat { padding: 20px 16px; }
