@@ -122,7 +122,7 @@ ul,ol{padding:0;list-style:none}
 .hero-statement p span{color:var(--grey)}
 .hero-cta{grid-column:1 / -1}
 @media (min-width:900px){
-  .hero-statement{grid-column:1 / span 7}
+  .hero-statement,.lede{grid-column:1 / span 7}
   .hero-cta{grid-column:9 / -1;justify-self:end}
 }
 .hero-meta{margin-top:clamp(48px,7vw,96px);padding-top:16px;border-top:1px solid var(--rule);display:flex;flex-wrap:wrap;gap:8px 32px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--grey)}
@@ -173,7 +173,7 @@ ul,ol{padding:0;list-style:none}
 /* why */
 .why-plate{grid-column:1 / -1;margin-bottom:48px}
 .why-text{grid-column:1 / -1}
-.lede{margin-bottom:clamp(24px,3vw,40px);font-size:clamp(22px,2.6vw,36px);font-weight:500;line-height:1.15;letter-spacing:-.03em;text-wrap:balance}
+.lede{grid-column:1 / -1;margin-bottom:clamp(24px,3vw,40px);font-size:clamp(22px,2.6vw,36px);font-weight:500;line-height:1.15;letter-spacing:-.03em;text-wrap:balance}
 @media (min-width:900px){
   .why-plate{grid-column:1 / span 5;margin:0}
   .why-text{grid-column:7 / -1;align-self:end}
@@ -304,7 +304,7 @@ ul,ol{padding:0;list-style:none}
   </section>
 
   <div class="wrap">
-    <p class="lede reveal">Well-made places, shaped around how people live, at prices they can reach.</p>
+    <div class="grid"><p class="lede reveal">Well-made places, shaped around how people live, at prices they can reach.</p></div>
     <figure class="plate plate-wide reveal">
       <div class="art">
         <img src="images/site-frame-landscape.jpg" alt="A new timber-framed home rising on an open lot at dusk, with fields and tree lines beyond" width="2400" height="1599" style="object-position:50% 70%" fetchpriority="high">
