@@ -1,2 +1,4 @@
 exclude:
   - brand
+  - tools
+  - CLAUDE.md

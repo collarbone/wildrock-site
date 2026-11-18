@@ -7,8 +7,25 @@
 <meta name="description" content="Wildrock designs and builds spec homes and small to mid-size apartment buildings in Northwest Arkansas — well-designed, attainably priced places shaped around how people actually live.">
 <meta name="theme-color" content="#F2EFEA">
 <link rel="canonical" href="https://wildrock.build/">
+<link rel="alternate" hreflang="en" href="https://wildrock.build/">
+<link rel="alternate" hreflang="es" href="https://wildrock.build/es/">
+<link rel="alternate" hreflang="x-default" href="https://wildrock.build/">
+<!-- lang-detect -->
+<script>
+// First visit with a Spanish-language browser -> Spanish page. A choice made with the EN/ES toggle always wins.
+(function () {
+  try {
+    if (localStorage.getItem('wr-lang')) return;
+    var l = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+    if (/^es\b/i.test(l)) location.replace('/es/' + location.hash);
+  } catch (e) {}
+})();
+</script>
+<!-- /lang-detect -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Wildrock">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="es_US">
 <meta property="og:url" content="https://wildrock.build/">
 <meta property="og:title" content="Wildrock — Spec Homes &amp; Small Multifamily in Northwest Arkansas">
 <meta property="og:description" content="Designing your home is designing your life. Well-made spec homes and small multifamily, shaped around how people live.">
@@ -76,8 +93,15 @@ ul,ol{padding:0;list-style:none}
 .nav-links a:hover{color:var(--ink)}
 .nav-links a.contact-link{color:var(--ink);border-bottom:1px solid var(--ink)}
 .menu-btn{display:none;font:inherit;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;background:none;border:0;color:var(--ink);padding:10px 0;cursor:pointer}
+.lang-switch{display:flex;align-items:center;margin-left:32px;font-size:12px;font-weight:500;letter-spacing:.12em}
+.lang-switch a{text-decoration:none;color:var(--grey-2);padding:10px 4px;transition:color .2s}
+.lang-switch a + a::before{content:"/";color:var(--rule);margin-right:8px;font-weight:400}
+.lang-switch a:hover{color:var(--ink)}
+.lang-switch a[aria-current]{color:var(--ink)}
+@media (min-width:900px){nav{margin-left:auto}}
 @media (max-width:899px){
-  .menu-btn{display:block;margin-left:auto}
+  .lang-switch{order:1;margin-left:auto}
+  .menu-btn{display:block;order:2;margin-left:24px}
   .nav-links{position:fixed;inset:64px 0 auto 0;flex-direction:column;gap:0;background:var(--bone);border-bottom:1px solid var(--rule);padding:8px var(--gut) 24px;visibility:hidden;opacity:0;transform:translateY(-6px);transition:opacity .25s,transform .25s,visibility 0s .25s}
   .nav-links a{font-size:20px;letter-spacing:-.02em;font-weight:500;color:var(--ink);padding:14px 0;border-bottom:1px solid var(--rule)}
   .nav-links a.contact-link{border-bottom:1px solid var(--rule);color:var(--accent)}
@@ -145,8 +169,10 @@ ul,ol{padding:0;list-style:none}
 /* why */
 .why-plate{grid-column:1 / -1;margin-bottom:48px}
 .why-text{grid-column:1 / -1}
+.why-lede{grid-column:1 / -1;margin-bottom:24px;font-size:clamp(20px,1.8vw,24px);font-weight:500;line-height:1.25;letter-spacing:-.02em;max-width:24ch}
 @media (min-width:900px){
   .why-plate{grid-column:1 / span 5;margin:0}
+  .why-lede{grid-column:1 / span 5}
   .why-text{grid-column:7 / -1;align-self:end}
 }
 .why-text .h-l{margin-bottom:28px}
@@ -243,10 +269,12 @@ ul,ol{padding:0;list-style:none}
         <a class="contact-link" href="#contact">Contact</a>
       </div>
     </nav>
+    <div class="lang-switch" role="group" aria-label="Language / Idioma">
+      <a href="/" lang="en" hreflang="en" data-lang="en" aria-current="true">EN</a>
+      <a href="/es/" lang="es" hreflang="es" data-lang="es">ES</a>
+    </div>
   </div>
 </header>
-
-<main id="main">
 
 <main id="main">
 
@@ -256,7 +284,7 @@ ul,ol{padding:0;list-style:none}
       <h1 id="hero-title" class="hero-mark">Designing your home is designing your life.</h1>
       <div class="grid hero-foot">
         <div class="hero-statement">
-          <p>Wildrock designs and builds spec homes and small multifamily in Northwest Arkansas. <span>Well-made places, shaped around how people live, at prices they can reach.</span></p>
+          <p>We specialize in designing &amp; building spec homes and small multifamily in Northwest Arkansas.</p>
         </div>
         <div class="hero-cta">
           <a class="cta" href="#contact">Get in touch <span class="arr" aria-hidden="true">&rarr;</span></a>
@@ -285,6 +313,7 @@ ul,ol{padding:0;list-style:none}
     <div class="wrap">
       <div class="sec-head"><p class="eyebrow"><span class="n">01</span>Approach</p><p class="eyebrow">What we believe</p></div>
       <div class="grid">
+        <p class="why-lede reveal">Well-made places, shaped around how people live, at prices they can reach.</p>
         <figure class="plate plate-tall why-plate reveal">
           <div class="art">
             <img src="images/window-light.jpg" alt="Late light falling through tall windows across a quiet living room" width="1200" height="1798" loading="lazy">
@@ -389,6 +418,14 @@ ul,ol{padding:0;list-style:none}
     var sub = a.getAttribute('data-subject');
     a.href = 'mail' + 'to:' + addr + (sub ? '?subject=' + encodeURIComponent(sub) : '');
     if (a.hasAttribute('data-mail-text')) a.textContent = addr;
+  });
+
+  document.querySelectorAll('.lang-switch a').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      try { localStorage.setItem('wr-lang', a.getAttribute('data-lang')); } catch (err) {}
+      if (a.hasAttribute('aria-current')) { e.preventDefault(); return; }
+      if (location.hash) { e.preventDefault(); location.href = a.getAttribute('href') + location.hash; }
+    });
   });
 
   function setMenu(open) {
