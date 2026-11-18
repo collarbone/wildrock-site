@@ -12,13 +12,17 @@
 <link rel="alternate" hreflang="x-default" href="https://wildrock.build/">
 <!-- lang-detect -->
 <script>
-// First visit with a Spanish-language browser -> Spanish page. A choice made with the EN/ES toggle always wins.
+// A language picked with the EN/ES toggle is kept in a cookie and wins on every visit.
+// With no cookie yet, a browser whose primary language is Spanish starts on the Spanish page.
 (function () {
-  try {
-    if (localStorage.getItem('wr-lang')) return;
+  var here = document.documentElement.lang === 'es' ? 'es' : 'en';
+  var m = document.cookie.match(/(?:^|; )wr-lang=(en|es)(?:;|$)/);
+  var want = m ? m[1] : null;
+  if (!want && here === 'en') {
     var l = (navigator.languages && navigator.languages[0]) || navigator.language || '';
-    if (/^es\b/i.test(l)) location.replace('/es/' + location.hash);
-  } catch (e) {}
+    if (/^es\b/i.test(l)) want = 'es';
+  }
+  if (want && want !== here) location.replace((want === 'es' ? '/es/' : '/') + location.hash);
 })();
 </script>
 <!-- /lang-detect -->
@@ -169,10 +173,9 @@ ul,ol{padding:0;list-style:none}
 /* why */
 .why-plate{grid-column:1 / -1;margin-bottom:48px}
 .why-text{grid-column:1 / -1}
-.why-lede{grid-column:1 / -1;margin-bottom:24px;font-size:clamp(20px,1.8vw,24px);font-weight:500;line-height:1.25;letter-spacing:-.02em;max-width:24ch}
+.lede{margin-bottom:24px;font-size:clamp(20px,1.8vw,24px);font-weight:500;line-height:1.25;letter-spacing:-.02em;max-width:24ch}
 @media (min-width:900px){
   .why-plate{grid-column:1 / span 5;margin:0}
-  .why-lede{grid-column:1 / span 5}
   .why-text{grid-column:7 / -1;align-self:end}
 }
 .why-text .h-l{margin-bottom:28px}
@@ -301,6 +304,7 @@ ul,ol{padding:0;list-style:none}
   </section>
 
   <div class="wrap">
+    <p class="lede reveal">Well-made places, shaped around how people live, at prices they can reach.</p>
     <figure class="plate plate-wide reveal">
       <div class="art">
         <img src="images/site-frame-landscape.jpg" alt="A new timber-framed home rising on an open lot at dusk, with fields and tree lines beyond" width="2400" height="1599" style="object-position:50% 70%" fetchpriority="high">
@@ -313,7 +317,6 @@ ul,ol{padding:0;list-style:none}
     <div class="wrap">
       <div class="sec-head"><p class="eyebrow"><span class="n">01</span>Approach</p><p class="eyebrow">What we believe</p></div>
       <div class="grid">
-        <p class="why-lede reveal">Well-made places, shaped around how people live, at prices they can reach.</p>
         <figure class="plate plate-tall why-plate reveal">
           <div class="art">
             <img src="images/window-light.jpg" alt="Late light falling through tall windows across a quiet living room" width="1200" height="1798" loading="lazy">
@@ -422,7 +425,8 @@ ul,ol{padding:0;list-style:none}
 
   document.querySelectorAll('.lang-switch a').forEach(function (a) {
     a.addEventListener('click', function (e) {
-      try { localStorage.setItem('wr-lang', a.getAttribute('data-lang')); } catch (err) {}
+      document.cookie = 'wr-lang=' + a.getAttribute('data-lang') + '; path=/; max-age=31536000; SameSite=Lax'
+        + (location.protocol === 'https:' ? '; Secure' : '');
       if (a.hasAttribute('aria-current')) { e.preventDefault(); return; }
       if (location.hash) { e.preventDefault(); location.href = a.getAttribute('href') + location.hash; }
     });

@@ -118,11 +118,7 @@ PAIRS = [
 def main():
     src = (ROOT / 'index.html').read_text()
 
-    # The language auto-detect redirect only belongs on the English page.
-    start, end = '<!-- lang-detect -->', '<!-- /lang-detect -->\n'
-    if start not in src or end not in src:
-        sys.exit('build_es: lang-detect markers missing from index.html')
-    out = src[:src.index(start)] + src[src.index(end) + len(end):]
+    out = src
 
     missing = []
     for en, es in PAIRS:
