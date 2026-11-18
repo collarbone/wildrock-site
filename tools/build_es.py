@@ -108,7 +108,7 @@ PAIRS = [
     ('<dt>Focus</dt><dd>Spec homes &amp; small multifamily</dd>', '<dt>Especialidad</dt><dd>Casas para la venta y vivienda multifamiliar</dd>'),
 
     # footer
-    ('&copy; 2026 Wildrock. All rights reserved.', '&copy; 2026 Wildrock. Todos los derechos reservados.'),
+    ('&copy; 2026 Wildrock LLC. All rights reserved.', '&copy; 2026 Wildrock LLC. Todos los derechos reservados.'),
 
     # shared short strings last, after the longer sentences containing them are done
     ('Northwest Arkansas<', 'Noroeste de Arkansas<'),
