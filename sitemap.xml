@@ -14,4 +14,16 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://wildrock.build/es/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://wildrock.build/"/>
   </url>
+  <url>
+    <loc>https://wildrock.build/privacy/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wildrock.build/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://wildrock.build/es/privacy/"/>
+  </url>
+  <url>
+    <loc>https://wildrock.build/es/privacy/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wildrock.build/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://wildrock.build/es/privacy/"/>
+  </url>
 </urlset>

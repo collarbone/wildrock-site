@@ -114,6 +114,7 @@ PAIRS = [
 
     # footer
     ('&copy; 2026 Wildrock LLC. All rights reserved.', '&copy; 2026 Wildrock LLC. Todos los derechos reservados.'),
+    ('<a href="/privacy/">Privacy &amp; SMS terms</a>', '<a href="/es/privacy/">Privacidad y términos de SMS</a>'),
 
     # shared short strings last, after the longer sentences containing them are done
     ('Northwest Arkansas<', 'Noroeste de Arkansas<'),
