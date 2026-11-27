@@ -26,4 +26,8 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://wildrock.build/privacy/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://wildrock.build/es/privacy/"/>
   </url>
+  <url>
+    <loc>https://wildrock.build/sms/</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
 </urlset>

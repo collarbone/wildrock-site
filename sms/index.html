@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project Texts Sign-Up | Wildrock</title>
+<meta name="description" content="Sign up to receive project text messages from Wildrock LLC.">
+<meta name="theme-color" content="#F2EFEA">
+<link rel="canonical" href="https://wildrock.build/sms/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bone:#F2EFEA;--ink:#1C1B19;--grey:#5F5B54;--rule:#D6D0C6;--accent:#A05436;--gut:16px;--sans:"Inter",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+@media (min-width:720px){:root{--gut:40px}}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bone);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+a:hover{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{max-width:760px;margin:0 auto;padding:0 var(--gut)}
+header{border-bottom:1px solid var(--rule);padding:18px 0}
+header .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;font-size:13px;letter-spacing:.12em;text-transform:uppercase}
+header a{text-decoration:none;font-weight:500}
+main{padding:48px 0 72px}
+.eyebrow{font-size:11.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--grey);margin:0 0 12px}
+h1{font-weight:500;letter-spacing:-.03em;font-size:clamp(30px,5vw,48px);line-height:1.08;margin:0 0 12px}
+h2{font-weight:500;letter-spacing:-.02em;font-size:clamp(20px,2.4vw,24px);line-height:1.25;margin:40px 0 10px;padding-top:24px;border-top:1px solid var(--rule)}
+p,ul{margin:0 0 14px;color:var(--grey)}
+ul{padding-left:20px}
+li{margin-bottom:6px}
+strong{color:var(--ink);font-weight:500}
+footer{border-top:1px solid var(--rule);padding:20px 0 32px;font-size:12px;color:var(--grey)}
+
+form{margin:28px 0 8px;padding:24px;border:1px solid var(--rule);background:#fff;max-width:520px}
+label{display:block;font-size:14px;font-weight:500;margin:0 0 6px}
+input[type=text],input[type=tel]{width:100%;font:inherit;font-size:16px;padding:10px 12px;border:1px solid var(--rule);background:#fff;color:var(--ink);margin:0 0 16px;border-radius:0}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;line-height:1.5;color:var(--ink);font-weight:400;margin:4px 0 18px}
+.check input{margin-top:3px;width:18px;height:18px;flex:none}
+button{font:inherit;font-weight:500;background:var(--ink);color:var(--bone);border:0;padding:12px 22px;cursor:pointer}
+.hp{position:absolute;left:-9999px}
+.err{color:#9b2c1d;font-weight:500}
+.small{font-size:13px}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a href="/">&larr; Wildrock</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <p class="eyebrow">Project texts</p>
+    <h1>Get project texts from Wildrock</h1>
+    <p>Subcontractors, suppliers and project partners: sign up here to get text messages from Wildrock LLC at <strong>479-503-5500</strong> about job scheduling, site access, inspections, bid requests, plans, invoices and payments. We never send marketing texts.</p>
+    <p class="err" id="err" hidden>Please enter a valid mobile number and check the box to agree.</p>
+    <form method="post" action="/hooks/sms-optin">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" autocomplete="name" required>
+      <label for="company">Company</label>
+      <input type="text" id="company" name="company" autocomplete="organization">
+      <label for="phone">Mobile number</label>
+      <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" required placeholder="479-555-0100">
+      <div class="hp" aria-hidden="true"><label for="website">Leave blank</label><input type="text" id="website" name="website" tabindex="-1" autocomplete="off"></div>
+      <label class="check"><input type="checkbox" name="consent" value="yes" required> <span>I agree to receive text messages from Wildrock LLC at the number above about project scheduling, bids, plans, invoices and payments. Message frequency varies. Message and data rates may apply. Reply STOP to opt out, HELP for help. Consent is not a condition of doing business with Wildrock. See our <a href="/privacy/">Privacy Policy</a> and <a href="/privacy/#sms-terms">Text Messaging Terms</a>.</span></label>
+      <button type="submit">Sign up for texts</button>
+    </form>
+    <p class="small">You can also opt in by texting <strong>START</strong> to 479-503-5500. Reply <strong>STOP</strong> at any time to opt out, or <strong>HELP</strong> for help. Message frequency varies. Message and data rates may apply. No mobile information will be shared with third parties or affiliates for marketing or promotional purposes.</p>
+    <script>if (/[?&]error=1/.test(location.search)) document.getElementById('err').hidden = false;</script>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">&copy; 2026 Wildrock LLC. All rights reserved.</div>
+</footer>
+</body>
+</html>
